@@ -27,22 +27,39 @@ function getParam(){
 
 function getRepos(handle){
     const urlHandle = `https://api.github.com/users/${handle}/repos`
-    console.log(urlHandle);
+    
+    
     fetch(urlHandle)
-    .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error(response.statusText);
-      })
-      .then((response) => response.json())
-    .then ( (responseJson) =>renderResults(responseJson) );
+    .then(response => response.json())
+    .then(responseJson => renderResults(responseJson))
+    .catch(error => alert('Something went wrong. Try again later.'));
+    
 
 }
 
 
 //renderResults function to show the results
+function renderResults(responseJson){
+console.log(responseJson)
+$('#repositories').empty();
 
+
+for (let i=0; i <responseJson.length; i++){
+    $('#repositories').append(
+     <li>${responseJson.name[i]</li>
+
+    )
+
+}
+
+
+
+
+
+
+
+
+}
 
 $(function(){
 
