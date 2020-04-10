@@ -5,9 +5,12 @@
 
 function subListener(){
 $('form').submit((event)=> {
+    
     console.log('I see you want to submit info');
     event.preventDefault();
     getParam();
+    $("#input").val("");
+    
 })
 
 }
@@ -16,6 +19,7 @@ $('form').submit((event)=> {
 //get function gets url
 function getParam(){
     let handle = $('input').val();
+    
     console.log(handle);
     getRepos(handle);
 
@@ -30,9 +34,10 @@ function getRepos(handle){
     
     
     fetch(urlHandle)
+   
     .then(response => response.json())
     .then(responseJson => renderResults(responseJson))
-    //.catch(err => alert('Something went wrong. Try again later.'));
+    .catch(Error => alert('Something went wrong. Try again later.'));
     
 
 }
@@ -52,6 +57,10 @@ for (let i=1; i <responseJson.length; i++){
 
     )
 
+}
+$('input').reset();
+if(responseJson.length === 0){
+    alert('please input a valid GitHub handle')
 }
 $('.hidden').removeClass('hidden');
 conosle.log 
