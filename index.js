@@ -32,7 +32,7 @@ function getRepos(handle){
     fetch(urlHandle)
     .then(response => response.json())
     .then(responseJson => renderResults(responseJson))
-    .catch(error => alert('Something went wrong. Try again later.'));
+    //.catch(err => alert('Something went wrong. Try again later.'));
     
 
 }
@@ -44,13 +44,17 @@ console.log(responseJson)
 $('#repositories').empty();
 
 
-for (let i=0; i <responseJson.length; i++){
+for (let i=1; i <responseJson.length; i++){
     $('#repositories').append(
-     <li>${responseJson.name[i]</li>
+     `<li><h2>${[i]}-  Repository name: ${responseJson[i].name}</h2></li>
+     <li>URL: <a href="${responseJson[i].html_url}">${responseJson[i].html_url}</a></li>
+     <br><br>`
 
     )
 
 }
+$('.hidden').removeClass('hidden');
+conosle.log 
 
 
 
